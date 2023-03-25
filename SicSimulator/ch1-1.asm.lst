@@ -1,0 +1,13 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096 0040A8          LDA     FIVE                                             
+4099 0C40A5          STA     ALPHA                                            
+409C 5040AB          LDCH    CHARZ                                            
+409F 5440AC          STCH    C1                                               
+40A2 3C40A2 HERE     J       HERE                                             
+40A5        ALPHA    RESW    1                                                
+40A8 000005 FIVE     WORD    5                                                
+40AB 5A     CHARZ    BYTE    C'Z'                                             
+40AC        C1       RESB    1                                                
+40AD                 END     CH1                                              

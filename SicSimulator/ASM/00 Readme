@@ -1,0 +1,5 @@
+%assemble a0.asm
+go_asm a0.asm
+
+%sic simulator run a0.asm.obj
+go_sim a0.asm.obj

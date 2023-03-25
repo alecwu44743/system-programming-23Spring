@@ -1,0 +1,31 @@
+Usage (Change directory to D:\SicTools\sictools\)
+-----
+D:\SicTools\sictools\
+
+To run simulator
+
+    java sic.Sim
+
+To run assembler
+
+    java sic.Asm source.asm
+
+where source.asm is the file to be compiled.
+
+To get assembler help
+
+    java sic.Asm -help
+
+To run linker
+
+    java sic.Link -o out.obj in1.obj in2.obj ...
+
+where out.obj is the output file and in1, in2,... are .obj files to be linked.
+
+To get linker help
+
+    java sic.Link -help
+
+To get graphical linker interface
+
+    java sic.Link -g

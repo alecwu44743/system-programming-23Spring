@@ -1,0 +1,13 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096                 LDA     #5                                               
+ **** undefined symbol in operand                       
+4099 0C40A5          STA     ALPHA                                            
+409C                 LDCH    #90                                              
+ **** undefined symbol in operand                       
+409F 5440A8          STCH    C1                                               
+40A2 3C40A2 HERE     J       HERE                                             
+40A5        ALPHA    RESW    1                                                
+40A8        C1       RESB    1                                                
+40A9                 END     CH1                                              

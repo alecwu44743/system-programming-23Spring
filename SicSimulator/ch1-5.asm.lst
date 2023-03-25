@@ -1,0 +1,18 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096 0440BE          LDX     ZERO                                             
+4099 50C0A8 MOVCH    LDCH    STR1,X                                           
+409C 54C0B3          STCH    STR2,X                                           
+409F 2C40C1          TIX     ELEVEN                                           
+40A2 384099          JLT     MOVCH                                            
+40A5 3C40A5 HERE     J       HERE                                             
+40A8 544553 STR1     BYTE    C'TEST STRING'                                   
+     542053
+     545249
+     4E47
+40B3        STR2     RESB    11                                               
+            .                                                                 
+40BE 000000 ZERO     WORD    0                                                
+40C1 00000B ELEVEN   WORD    11                                               
+40C4                 END     CH1                                              

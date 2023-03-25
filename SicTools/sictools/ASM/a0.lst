@@ -1,0 +1,22 @@
+003E8            WORK2  START   1000    . PROGRAM
+003E8  03201B    FIRST  LDA     AA    
+003EB  1B201B           ADD     BB    
+003EE  0F201B           STA     CC    
+                  . ACC = 12 + (3) = 15; CC = 15
+003F1  1F2015           SUB     BB    
+003F4  0F2018           STA     DD    
+                  . ACC = 15 - (3) = 12; DD = 12
+003F7  23200F           MUL     BB    
+003FA  0F2018           STA     FF    
+                  . ACC = 12 * (3) = 36; EE = 36
+003FD  272009           DIV     BB    
+00400  0F2012           STA     FF    
+                  . ACC = 36 / (3) = 12 ; FF = 12
+00403  3F2FFD    HERE   J       HERE    
+00406  00000C    AA     WORD    12    
+00409  000003    BB     WORD    3    
+0040C  000000    CC     RESW    1    
+0040F  000000    DD     RESW    1    
+00412  000000    EE     RESW    1    
+00415  000000    FF     RESW    1    
+00418                   END     FIRST    

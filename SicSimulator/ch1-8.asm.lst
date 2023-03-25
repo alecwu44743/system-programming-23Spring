@@ -1,0 +1,29 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096                 LDS     #3                                               
+ **** undefined symbol in operand                       
+ **** unrecognized operation code                       
+4099                 LDT     #300                                             
+ **** undefined symbol in operand                       
+ **** unrecognized operation code                       
+409C                 LDX     #0                                               
+ **** undefined symbol in operand                       
+409F 00C0B4 ADDLP    LDA     ALPHA,X                                          
+40A2 18C1E0          ADD     BETA,X                                           
+40A5 0CC30C          STA     GAMMA,X                                          
+40A8                 ADDR    S,X                                              
+ **** undefined symbol in operand                       
+ **** unrecognized operation code                       
+40AB                 COMPR   X,T                                              
+ **** undefined symbol in operand                       
+ **** illegal operand field                             
+ **** unrecognized operation code                       
+40AE 38409F          JLT     ADDLP                                            
+40B1 3C40B1 HERE     J       HERE                                             
+            .                                                                 
+40B4        ALPHA    RESW    100                                              
+41E0        BETA     RESW    100                                              
+430C        GAMMA    RESW    100                                              
+            .                                                                 
+4438                 END     CH1                                              

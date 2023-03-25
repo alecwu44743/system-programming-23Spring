@@ -1,0 +1,25 @@
+SIC Assembler V1.2
+
+1000        PRO      START   1000              PRO PROGRAM FOR SIC SOFTWARE   
+1000 001021 FIRST    LDA     ONE                                              
+1003 181024          ADD     TWO                                              
+1006 181027          ADD     THREE                                            
+1009 0C102D          STA     SUM                                              
+            .                                                                 
+100C 28102A          COMP    FOUR                                             
+100F 341018          JGT     THIS                                             
+1012 30101B          JEQ     THAT                                             
+1015 38101B          JLT     THAT                                             
+            .                                                                 
+1018 1C102A THIS     SUB     FOUR                                             
+            .                                                                 
+101B 0C102D THAT     STA     SUM                                              
+101E 3C101E HERE     J       HERE                                             
+            .                                                                 
+            .                                                                 
+1021 000001 ONE      WORD    1                                                
+1024 000002 TWO      WORD    2                                                
+1027 000003 THREE    WORD    3                                                
+102A 000004 FOUR     WORD    4                                                
+102D 000000 SUM      WORD    0                                                
+1030                 END     FIRST                                            

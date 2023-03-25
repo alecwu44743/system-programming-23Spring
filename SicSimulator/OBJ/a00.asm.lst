@@ -1,0 +1,24 @@
+SIC Assembler V1.2
+
+1000        WORK1    START   1000              WORK1 PROGRAM                  
+1000 00101E FIRST    LDA     AA                                               
+1003 181021          ADD     BB                                               
+1006 0C1024          STA     CC                                               
+            . ACC = 12 + (-3) = 9; CC = 9                                     
+1009 1C1021          SUB     BB                                               
+100C 0C1027          STA     DD                                               
+            . ACC = 9 - (-3) = 12; DD = 12                                    
+100F 201021          MUL     BB                                               
+1012 0C102A          STA     EE                                               
+            . ACC = 12 * (-3) = -36; EE = -36                                 
+1015 241021          DIV     BB                                               
+1018 0C102D          STA     FF                                               
+            . ACC = -36 / (-3) = 12 ; FF = 12                                 
+101B 3C101B HERE     J       HERE                                             
+101E 00000C AA       WORD    12                                               
+1021 FFFFFD BB       WORD    -3                                               
+1024        CC       RESW    1                                                
+1027        DD       RESW    1                                                
+102A        EE       RESW    1                                                
+102D        FF       RESW    1                                                
+1030                 END     FIRST                                            

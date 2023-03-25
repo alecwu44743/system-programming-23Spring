@@ -1,0 +1,26 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096 004441          LDA     ZERO                                             
+4099 0C40BA          STA     INDEX                                            
+409C 0440BA ADDLP    LDX     INDEX                                            
+409F 00C0BD          LDA     ALPHA,X                                          
+40A2 18C1E9          ADD     BETA,X                                           
+40A5 0CC315          STA     GAMMA,X                                          
+40A8 0040BA          LDA     INDEX                                            
+40AB 184447          ADD     THREE                                            
+40AE 0C40BA          STA     INDEX                                            
+40B1 284444          COMP    K300                                             
+40B4 38409C          JLT     ADDLP                                            
+40B7 3C40B7 HERE     J       HERE                                             
+            .                                                                 
+40BA        INDEX    RESW    1                                                
+            .                                                                 
+40BD        ALPHA    RESW    100                                              
+41E9        BETA     RESW    100                                              
+4315        GAMMA    RESW    100                                              
+            .                                                                 
+4441 000000 ZERO     WORD    0                                                
+4444 00012C K300     WORD    300                                              
+4447 000003 THREE    WORD    3                                                
+444A                 END     CH1                                              

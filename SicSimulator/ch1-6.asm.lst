@@ -1,0 +1,22 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096                 LDT     #11                                              
+ **** undefined symbol in operand                       
+ **** unrecognized operation code                       
+4099                 LDX     #0                                               
+ **** undefined symbol in operand                       
+409C 50C0AB MOVCH    LDCH    STR1,X                                           
+409F 54C0B6          STCH    STR2,X                                           
+40A2                 TIXR    T                                                
+ **** undefined symbol in operand                       
+ **** unrecognized operation code                       
+40A5 38409C          JLT     MOVCH                                            
+40A8 3C40A8 HERE     J       HERE                                             
+40AB 544553 STR1     BYTE    C'TEST STRING'                                   
+     542053
+     545249
+     4E47
+40B6        STR2     RESB    11                                               
+            .                                                                 
+40C1                 END     CH1                                              

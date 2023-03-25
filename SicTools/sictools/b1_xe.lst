@@ -1,0 +1,20 @@
+                  . 23456789012345678901234567890
+00000            CH1B    START   0    
+00000  010005            LDA     #5    
+00003  0F200C            STA     ALPHA    
+00006  51005A            LDCH    #90    
+00009  57200F            STCH    C1    
+0000C  010FFF            LDA     #-1    
+0000F  3F2FFD    HERE    J       HERE    
+00012  000000    ALPHA   RESW    1    
+00015  00....00  ALPHA2  RESW    2    
+0001B  00        C1      RESB    1    
+0001C  0000      C2      RESB    2    
+0001E  41        CA      BYTE    X'41'    
+0001F  41C1      CB      BYTE    X'41C1'    
+00021  3431      CC      BYTE    C'41'    
+00023  34314331  CD      BYTE    C'41C1'    
+00027  4142      CE      BYTE    C'AB'    
+00029  6162      CF      BYTE    C'ab'    
+0002B  303132    CG      BYTE    C'012'    
+0002E                    END     CH1B    

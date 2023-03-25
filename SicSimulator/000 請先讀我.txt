@@ -1,0 +1,36 @@
+1) 上課講義：	sp01.ppt
+2)  執行 SIC assembler
+	 (1) download sicasm.exe 與 SRCFILE
+	SRCFILE 為你的組合語言程式（格式如下說明）
+	sicasm 為 SIC assembler 
+	(2) 命令列模式: 執行 sicasm 會產生 OBJFILE, LISFILE (及 INTFILE) 
+	(3) LISFILE 為組譯後的列表檔案
+	OBJFILE 為(組合語言程式語法正確的話）的 object file ，可以給 loader 載入記	憶體。
+3) 執行 SIC simulator 
+	(1) download sicsim.exe、DEV00、DEVF1 
+	(2) 命令列模式: 執行 sicsim 進入模擬器 
+	(3) 執行模擬器指令
+ 
+4) 本範例的 SRCFILE，會讀取 DEVF3 的內容，複製產生 DEVF6
+ (記得要先將 OBJFILE copy 到 DEVF2 再執行)
+
+
+** 要組譯的程式名稱固定為 SRCFILE，
+產生的 OBJECT CODE 檔名固定為 OBJFILE，
+而 (absolute)loader固定讀 DEVF2 並跳到程式開始位置執行。
+
+組合語言程式格式
+Bytes         1-8  Label
+                9  Blank
+             10-15 Operation code (or Assembler directive) 
+             16-17 Blank
+             18-35 Operand
+             36-66 Comment
+
+>SICASM
+// read SRCFILE, generate INTFILE, OBJFILE, LISFILE
+*** On -> (bootstrap) DEV00 @0000 /* "S" command to run bootstrap */ 
+-> load [absolute] loader DEVF1 @0080 
+--> read DEVF2 & jump to run
+
+Reference: http://sun.csim.scu.edu.tw/~jiun/

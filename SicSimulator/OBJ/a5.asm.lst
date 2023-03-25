@@ -1,0 +1,19 @@
+SIC Assembler V1.2
+
+1000        PRO3     START   1000              PRO PROGRAM FOR SIC SOFTWARE   
+1000 001018 THIRD    LDA     ZERO                                             
+1003 041018          LDX     ZERO                                             
+1006 101021 DO       STX     TEMP                                             
+1009 181021          ADD     TEMP                                             
+100C 2C101E          TIX     FOUR                                             
+100F 381006          JLT     DO                                               
+1012 0C1024          STA     ANS                                              
+1015 3C1015 HERE     J       HERE                                             
+            .                                                                 
+            .                                                                 
+1018 000000 ZERO     WORD    0                                                
+101B 000001 ONE      WORD    1                                                
+101E 000004 FOUR     WORD    4                                                
+1021 000000 TEMP     WORD    0                                                
+1024 000000 ANS      WORD    0                                                
+1027                 END     THIRD                                            

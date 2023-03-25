@@ -1,0 +1,15 @@
+SIC Assembler V1.2
+
+            .23456789012345678901234567890                                    
+1000        A1       START   1000                                             
+1000 00100F          LDA     FIVE                                             
+1003 0C1012          STA     ALPHA                                            
+1006 501015          LDCH    CHARZ                                            
+1009 541018          STCH    C1                                               
+100C        HERE     J       HERE		                                           
+ **** undefined symbol in operand                       
+100F 000005 FIVE     WORD    5                                                
+1012        ALPHA    RESW    1                                                
+1015 454F46 CHARZ    BYTE    c'EOF'                                           
+1018        C1       RESW    1                                                
+101B                 END     A1                                               

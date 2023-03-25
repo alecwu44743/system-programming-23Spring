@@ -1,0 +1,41 @@
+SIC Assembler V1.2
+
+1200        HW1SIC   START   1200                                             
+1200 00123F FIRST    LDA     AA                                               
+1203 181242          ADD     BB                                               
+1206 0C1245          STA     CC                                               
+1209 1C1248          SUB     DD                                               
+120C 0C124B          STA     EE                                               
+120F 20123F          MUL     AA                                               
+1212 0C124E          STA     FF                                               
+            .                                                                 
+1215 00124B          LDA     EE                                               
+1218 24123F          DIV     AA                                               
+121B 0C1251          STA     GG                                               
+121E 20125A          MUL     THREE                                            
+1221 0C1254          STA     HH                                               
+1224 001260          LDA     ZERO                                             
+1227 0C1257          STA     II                                               
+122A 00124E          LDA     FF                                               
+122D 281254          COMP    HH                                               
+1230 341233          JGT     IF                                               
+            .                                                                 
+1233 001251 IF       LDA     GG                                               
+1236 24125D          DIV     SIX                                              
+1239 0C1257          STA     II                                               
+123C 3C123C HERE     J       HERE                                             
+            .                                                                 
+            .                                                                 
+123F 000002 AA       WORD    2                                                
+1242 000007 BB       WORD    7                                                
+1245        CC       RESW    1                                                
+1248 000003 DD       WORD    3                                                
+124B        EE       RESW    1                                                
+124E        FF       RESW    1                                                
+1251        GG       RESW    1                                                
+1254        HH       RESW    1                                                
+1257        II       RESW    1                                                
+125A 000003 THREE    WORD    3                                                
+125D 000006 SIX      WORD    6                                                
+1260 000000 ZERO     WORD    0                                                
+1263                 END     FIRST                                            

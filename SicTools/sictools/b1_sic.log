@@ -1,0 +1,27 @@
+***** Section <default> *****
+Stats: size=53  blocks=53  symbols=16  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  00035     6   12    4
+Symbols
+    name        hex       dec  scope     kind      type      description
+    ALPHA    000019        25  local     relative  data      label
+    ALPHA2   00001C        28  local     relative  data      label
+    C1       000022        34  local     relative  data      label
+    C2       000023        35  local     relative  data      label
+    CA       000025        37  local     relative  data      label
+    CB       000026        38  local     relative  data      label
+    CC       000028        40  local     relative  data      label
+    CD       00002A        42  local     relative  data      label
+    CE       00002E        46  local     relative  data      label
+    CF       000030        48  local     relative  data      label
+    CG       000032        50  local     relative  data      label
+    CH1B     000000         0  exported  relative  code      label
+    CHARZ    000015        21  local     relative  data      label
+    FIVE     000012        18  local     relative  data      label
+    HERE     00000F        15  local     relative  code      label
+    NEG1     000016        22  local     relative  data      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol

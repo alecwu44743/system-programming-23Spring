@@ -1,0 +1,28 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096                 LDS     INCR                                             
+ **** unrecognized operation code                       
+4099 0040B4          LDA     ALPHA                                            
+409C                 ADDR    S,A                                              
+ **** undefined symbol in operand                       
+ **** illegal operand field                             
+ **** unrecognized operation code                       
+409F                 SUB     #1                                               
+ **** undefined symbol in operand                       
+40A2 0C40B7          STA     BETA                                             
+40A5 0040BA          LDA     GAMMA                                            
+40A8                 ADDR    S,A                                              
+ **** undefined symbol in operand                       
+ **** illegal operand field                             
+ **** unrecognized operation code                       
+40AB                 SUB     #1                                               
+ **** undefined symbol in operand                       
+40AE 0C40BD          STA     DELTA                                            
+40B1 3C40B1 HERE     J       HERE                                             
+40B4        ALPHA    RESW    1                                                
+40B7        BETA     RESW    1                                                
+40BA        GAMMA    RESW    1                                                
+40BD        DELTA    RESW    1                                                
+40C0        INCR     RESW    1                                                
+40C3                 END     CH1                                              

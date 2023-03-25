@@ -1,0 +1,15 @@
+SIC Assembler V1.2
+
+1000        PRO4     START   1000              PRO PROGRAM FOR SIC SOFTWARE   
+1000 E01015 FOURTH   TD      INPUT                                            
+1003 301000          JEQ     FOURTH                                           
+1006 D81015          RD      INPUT                                            
+1009 E01016 WRITE    TD      OUTPUT                                           
+100C 301009          JEQ     WRITE                                            
+100F DC1016          WD      OUTPUT                                           
+1012 3C1012 HERE     J       HERE                                             
+            .                                                                 
+            .                                                                 
+1015 F3     INPUT    BYTE    X'F3'                                            
+1016 04     OUTPUT   BYTE    X'04'                                            
+1017                 END     FOURTH                                           

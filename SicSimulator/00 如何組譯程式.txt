@@ -1,0 +1,20 @@
+組譯  test.asm file, type
+go_asm test.asm
+
+執行 test.obj file, type
+go_sim test.obj
+(1) 'S' 
+(2) 'R' 
+(3) 'H 9999'
+(4) 'B 00E2'
+(5) 'R'
+(6) 'R'
+(... Reached ...)
+(7) 'H 1'
+(8) 'R'
+<程式開始的第一行>
+R
+D R                << 顯示暫存器
+D 1000-10FF 	   << 顯示記憶體
+D R,1024-10FF 	   << 顯示暫存器,記憶體
+

@@ -1,0 +1,12 @@
+                  . 23456789012345678901234567890
+003E8            A1     START   1000    
+003E8  03200C           LDA     FIVE    
+003EB  0F200C           STA     ALPHA    
+003EE  53200C           LDCH    CHARZ    
+003F1  57200C           STCH    C1    
+003F4  3F2FFD    HERE   J       HERE    
+003F7  000005    FIVE   WORD    5    
+003FA  000000    ALPHA  RESW    1    
+003FD  454F46    CHARZ  BYTE    C'EOF'    
+00400  000000    C1     RESW    1    
+00403                   END     A1    

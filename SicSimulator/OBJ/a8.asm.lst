@@ -1,0 +1,20 @@
+SIC Assembler V1.2
+
+1000        PRO5P2   START   1000              PRO PROGRAM FOR SIC SOFTWARE   
+1000 00101E FIFTH    LDA     ZERO                                             
+1003 481012          JSUB    READ                                             
+1006 E01022 WRITE    TD      OUTPUT                                           
+1009 301006          JEQ     WRITE                                            
+100C DC1022          WD      OUTPUT                                           
+100F 3C100F HERE     J       HERE                                             
+            .                                                                 
+1012 E01021 READ     TD      INPUT                                            
+1015 301012          JEQ     READ                                             
+1018 D81021          RD      INPUT                                            
+101B 4C0000          RSUB                                                     
+            .                                                                 
+            .                                                                 
+101E 000000 ZERO     WORD    0                                                
+1021 F3     INPUT    BYTE    X'F3'                                            
+1022 04     OUTPUT   BYTE    X'04'                                            
+1023                 END     FIFTH                                            

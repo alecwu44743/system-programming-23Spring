@@ -1,0 +1,18 @@
+SIC Assembler V1.2
+
+4096        CH1      START   4096                                             
+4096 0040B1          LDA     ALPHA                                            
+4099 1840BD          ADD     INCR                                             
+409C 0C40B4          STA     BETA                                             
+409F 0040B7          LDA     GAMMA                                            
+40A2 1840BD          ADD     INCR                                             
+40A5 1C40AE          SUB     ONE                                              
+40A8 0C40BA          STA     DELTA                                            
+40AB 3C40AB HERE     J       HERE                                             
+40AE 000001 ONE      WORD    1                                                
+40B1        ALPHA    RESW    1                                                
+40B4        BETA     RESW    1                                                
+40B7        GAMMA    RESW    1                                                
+40BA        DELTA    RESW    1                                                
+40BD        INCR     RESW    1                                                
+40C0                 END     CH1                                              
