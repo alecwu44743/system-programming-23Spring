@@ -1,0 +1,143 @@
+00000  05        INPUT      BYTE    X'05'    
+00001  000000    CURR       RESW    1    
+00004  00....00  NU         RESW    8    
+                  
+                  . read character function
+0001C  010000    READCHAR   LDA     #0    
+0001F  E32FDE    READLOOP   TD      INPUT    . TEST INPUT DEVICE
+00022  332FFA               JEQ     READLOOP    . LOOP UNTIL READY
+00025  DB2FD8               RD      INPUT    . READ CHARACTER
+00028  4F0000               RSUB        . RETURN TO CALLER
+                  
+                  . get two-digits number function
+0002B  17201B    GETD       STL     RETGD    . save return address
+0002E  4B2FEB    GETDLOOP   JSUB    READCHAR    . read character
+00031  1D0030               SUB     #48    . subtract hex 0 from ascii code '0'
+00034  21000A               MUL     #10    . multiply 10	for two-digit
+00037  0F2012               STA     DIGIT10    
+0003A  4B2FDF               JSUB    READCHAR    . read character
+0003D  1D0030               SUB     #48    . subtract hex 0 from ascii code '0'
+00040  1B2009               ADD     DIGIT10    
+00043  0B2003               LDL     RETGD    . set L to return address
+00046  4F0000               RSUB        
+00049  000000    RETGD      RESW    1    
+0004C  000000    DIGIT10    RESW    1    
+                  
+                  . Write into the 06.DEV
+0004F  E3200F    WDBYTE     TD      OUTPUT    
+00052  332FFA               JEQ     WDBYTE    
+00055  0F2FA9               STA     CURR    
+00058  532007               LDCH    OUTD    
+0005B  DF2003               WD      OUTPUT    
+0005E  4F0000               RSUB        
+00061  06        OUTPUT     BYTE    X'06'    
+00062  00        OUTD       RESB    1    
+                  
+                  . if is odd ,the amounts of odd plus 1
+00063  032009    ISODD      LDA     ODDSUM    
+00066  190001               ADD     #1    
+00069  0F2003               STA     ODDSUM    
+0006C  4F0000               RSUB        
+0006F  000000    ODDSUM     RESW    1    
+                  . if is even , the amounts of even plus 1
+00072  032009    ISEVN      LDA     EVNSUM    
+00075  190001               ADD     #1    
+00078  0F2003               STA     EVNSUM    
+0007B  4F0000               RSUB        
+0007E  000000    EVNSUM     RESW    1    
+                  
+                  . check the odd and even, count their amounts
+00081  172FC5    ODDORDEVN  STL     RETGD    . save return address
+00084  050000               LDX     #0    
+00087  03AF7A    CLOOP      LDA     NU,X    
+0008A  410001               AND     #1    
+0008D  290000               COMP    #0    
+00090  332006               JEQ     TOEVN    
+00093  4B2FCD               JSUB    ISODD    
+00096  3F2003               J       NEXT1    
+00099  4B2FD6    TOEVN      JSUB    ISEVN    
+0009C  B810      NEXT1      TIXR    X    . X+1
+0009E  B810                 TIXR    X    . X+1
+000A0  2D0018               TIX     #24    . X+1 and compare to 24
+000A3  3B2FE1               JLT     CLOOP    
+000A6  0B2FA0               LDL     RETGD    
+000A9  4F0000               RSUB        
+                  
+                  . array sum function
+000AC  172F9A    SUMARRAY   STL     RETGD    
+000AF  050000               LDX     #0    
+000B2  03AF4F    SUMLOOP    LDA     NU,X    
+000B5  1B2022               ADD     ODDARRAY    
+000B8  0F201F               STA     ODDARRAY    
+000BB  B810                 TIXR    X    . X+1
+000BD  B810                 TIXR    X    . X+1
+000BF  B810                 TIXR    X    . X+1
+000C1  03AF40               LDA     NU,X    
+000C4  1B2016               ADD     EVNARRAY    
+000C7  0F2013               STA     EVNARRAY    
+000CA  B810                 TIXR    X    . X+1
+000CC  B810                 TIXR    X    . X+1
+000CE  2D0018               TIX     #24    . X+1 and compare to 24
+000D1  3B2FDE               JLT     SUMLOOP    
+000D4  0B2F72               LDL     RETGD    
+000D7  4F0000               RSUB        
+000DA  000000    ODDARRAY   RESW    1    
+000DD  000000    EVNARRAY   RESW    1    
+                  
+000E0  000000    TMP        RESW    1    
+                  . main function
+000E3  010000    MAIN       LDA     #0    
+000E6  050000               LDX     #0    
+000E9  4B2F3F    LOOP       JSUB    GETD    . get two-digits number
+000EC  0FAF15               STA     NU,X    
+000EF  4B2F2A               JSUB    READCHAR    . get a space
+000F2  B810                 TIXR    X    . X+1
+000F4  B810                 TIXR    X    . X+1
+000F6  2D0018               TIX     #24    . X+1 and compare to 24
+000F9  3B2FED               JLT     LOOP    
+                  
+                  . first step
+000FC  032F05               LDA     NU    
+000FF  572F60               STCH    OUTD    
+00102  4B2F4A               JSUB    WDBYTE    
+                  
+                  . second step
+00105  4B2F79               JSUB    ODDORDEVN    
+00108  032F64               LDA     ODDSUM    
+0010B  2B2F70               COMP    EVNSUM    
+0010E  372009               JGT     OPENDOOR    
+00111  032EED               LDA     CURR    
+00114  4100FE               AND     #254    . AND 11111110
+00117  3F2006               J       NEXT2    
+0011A  032EE4    OPENDOOR   LDA     CURR    
+0011D  450001               OR      #1    
+00120  572F3F    NEXT2      STCH    OUTD    
+00123  4B2F29               JSUB    WDBYTE    
+                  
+                  . third step
+00126  4B2F83               JSUB    SUMARRAY    
+00129  032FAE               LDA     ODDARRAY    
+0012C  2B2FAE               COMP    EVNARRAY    
+0012F  372009               JGT     ALARM    
+00132  032ECC               LDA     CURR    
+00135  4100F7               AND     #247    . AND 11110111
+00138  3F2006               J       NEXT3    
+0013B  032EC3    ALARM      LDA     CURR    
+0013E  450008               OR      #8    
+00141  572F1E    NEXT3      STCH    OUTD    
+00144  4B2F08               JSUB    WDBYTE    
+                  
+                  . fourth step
+00147  032EB7               LDA     CURR    
+0014A  410020               AND     #32    . AND 00100000
+0014D  290020               COMP    #32    . compare to 00100000
+00150  332009               JEQ     CLOSE    
+00153  032EAB               LDA     CURR    
+00156  450020               OR      #32    . OR 00100000
+00159  3F2006               J       NEXT4    
+0015C  032EA2    CLOSE      LDA     CURR    
+0015F  4100DF               AND     #223    . AND 11011111
+00162  572EFD    NEXT4      STCH    OUTD    
+00165  4B2EE7               JSUB    WDBYTE    
+00168  3F2FFD    HERE       J       HERE    . loop forever
+0016B                       END     MAIN    

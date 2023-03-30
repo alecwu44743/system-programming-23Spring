@@ -1,0 +1,147 @@
+00000  05        INPUT     BYTE    X'05'    
+00001  000000    NOWDATA   RESW    1    
+00004  00....00  NU        RESW    8    
+                  
+                  
+                  . read 05.dev
+0001C  010000    READCHAR  LDA     #0    
+0001F  E32FDE    READLOOP  TD      INPUT    . TEST INPUT DEVICE
+00022  332FFA              JEQ     READLOOP    . LOOP UNTIL READY
+00025  DB2FD8              RD      INPUT    . READ CHARACTER
+00028  4F0000              RSUB        . RETURN TO CALLER
+                  
+                  . write data into 06.dev
+0002B  E3200F    WDBYTE    TD      OUTPUT    
+0002E  332FFA              JEQ     WDBYTE    
+00031  0F2FCD              STA     NOWDATA    
+00034  532007              LDCH    OUTD    
+00037  DF2003              WD      OUTPUT    
+0003A  4F0000              RSUB        
+0003D  06        OUTPUT    BYTE    X'06'    
+0003E  00        OUTD      RESB    1    
+                  
+                  . char to integer
+0003F  17201B    GETD      STL     RETGD    . SAVE RETURN ADDRESS
+00042  4B2FD7    GETDLOOP  JSUB    READCHAR    . READ CHARACTER
+00045  1D0030              SUB     #48    . SUBTRACT HEX 30 FROM ASCII CODE '0'
+00048  21000A              MUL     #10    . *10
+0004B  0F2012              STA     DIGIT10    
+0004E  4B2FCB              JSUB    READCHAR    . READ CHARACTER
+00051  1D0030              SUB     #48    . SUBTRACT HEX 30 FROM ASCII CODE '0'
+00054  1B2009              ADD     DIGIT10    
+00057  0B2003              LDL     RETGD    . RETURN TO CALLER
+0005A  4F0000              RSUB        
+0005D  000000    RETGD     RESW    1    
+00060  000000    DIGIT10   RESW    1    
+                  
+                  
+00063  032009    PLUSODD   LDA     ODDCNT    
+00066  190001              ADD     #1    
+00069  0F2003              STA     ODDCNT    
+0006C  4F0000              RSUB        
+0006F  000000    ODDCNT    RESW    1    
+                  
+                  
+00072  032009    PLUSEVEN  LDA     EVENCNT    
+00075  190001              ADD     #1    
+00078  0F2003              STA     EVENCNT    
+0007B  4F0000              RSUB        
+0007E  000000    EVENCNT   RESW    1    
+                  
+                  
+                  . count the amounts of odd and even in NU
+00081  172FD9    OE_COUNT  STL     RETGD    
+00084  050000              LDX     #0    
+00087  03AF7A    CLOOP     LDA     NU,X    
+0008A  410001              AND     #1    
+0008D  290000              COMP    #0    
+00090  332006              JEQ     EVEN    
+00093  4B2FCD              JSUB    PLUSODD    
+00096  3F2003              J       MOVE1    
+00099  4B2FD6    EVEN      JSUB    PLUSEVEN    
+0009C  B810      MOVE1     TIXR    X    
+0009E  B810                TIXR    X    
+000A0  2D0018              TIX     #24    
+000A3  3B2FE1              JLT     CLOOP    
+000A6  0B2FB4              LDL     RETGD    
+000A9  4F0000              RSUB        
+                  
+                  . NU[ODD] NU[EVEN] SUM
+000AC  172FAE    SUM_NU    STL     RETGD    
+000AF  050000              LDX     #0    
+000B2  03AF4F    DOLOOP    LDA     NU,X    
+000B5  1B2022              ADD     ODD_SUM    
+000B8  0F201F              STA     ODD_SUM    
+000BB  B810                TIXR    X    
+000BD  B810                TIXR    X    
+000BF  B810                TIXR    X    
+000C1  03AF40              LDA     NU,X    
+000C4  1B2016              ADD     EVEN_SUM    
+000C7  0F2013              STA     EVEN_SUM    
+000CA  B810                TIXR    X    
+000CC  B810                TIXR    X    
+000CE  2D0018              TIX     #24    
+000D1  3B2FDE              JLT     DOLOOP    
+000D4  0B2F86              LDL     RETGD    
+000D7  4F0000              RSUB        
+000DA  000000    ODD_SUM   RESW    1    
+000DD  000000    EVEN_SUM  RESW    1    
+                  
+                  
+                  
+                  . main function END     END     MAINFUNC
+000E0  010000    MAINFUNC  LDA     #0    
+000E3  050000              LDX     #0    
+000E6  4B2F56    LOOP      JSUB    GETD    
+000E9  0FAF18              STA     NU,X    
+000EC  4B2F2D              JSUB    READCHAR    
+000EF  B810                TIXR    X    
+000F1  B810                TIXR    X    
+000F3  2D0018              TIX     #24    
+000F6  3B2FED              JLT     LOOP    
+                  
+                  . PRACTICE 1
+000F9  032F08              LDA     NU    
+000FC  572F3F              STCH    OUTD    
+000FF  4B2F29              JSUB    WDBYTE    
+                  
+                  . PRACTICE 2
+00102  4B2F7C              JSUB    OE_COUNT    
+00105  032F67              LDA     ODDCNT    
+00108  2B2F73              COMP    EVENCNT    
+0010B  372009              JGT     DOOR_ON    
+0010E  032EF0              LDA     NOWDATA    
+00111  4100FE              AND     #254    
+00114  3F2006              J       OUT1    
+00117  032EE7    DOOR_ON   LDA     NOWDATA    
+0011A  450001              OR      #1    
+0011D  572F1E    OUT1      STCH    OUTD    
+00120  4B2F08              JSUB    WDBYTE    
+                  
+                  . PRACTICE 3
+00123  4B2F86              JSUB    SUM_NU    
+00126  032FB1              LDA     ODD_SUM    
+00129  2B2FB1              COMP    EVEN_SUM    
+0012C  372009              JGT     RINGRING    
+0012F  032ECF              LDA     NOWDATA    
+00132  4100F7              AND     #247    
+00135  3F2006              J       OUT2    
+00138  032EC6    RINGRING  LDA     NOWDATA    
+0013B  450008              OR      #8    
+0013E  572EFD    OUT2      STCH    OUTD    
+00141  4B2EE7              JSUB    WDBYTE    
+                  
+                  . PRACTICE 4
+00144  032EBA              LDA     NOWDATA    
+00147  410020              AND     #32    
+0014A  290020              COMP    #32    
+0014D  332009              JEQ     LIGHT    
+00150  032EAE              LDA     NOWDATA    
+00153  450020              OR      #32    
+00156  3F2006              J       OUT3    
+00159  032EA5    LIGHT     LDA     NOWDATA    
+0015C  4100DF              AND     #223    
+0015F  572EDC    OUT3      STCH    OUTD    
+00162  4B2EC6              JSUB    WDBYTE    
+00165  3F2FFD    HERE      J       HERE    
+00168                      END     MAINFUNC    

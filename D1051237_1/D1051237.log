@@ -1,0 +1,45 @@
+***** Section <default> *****
+Stats: size=363  blocks=363  symbols=34  literals=0  relocations=0
+Blocks
+    name        start   size  #ins #dir #sto
+    <default>   00000  0016B   107    3   10
+Symbols
+    name           hex       dec  scope     kind      type      description
+    ALARM       00013B       315  local     relative  code      label
+    CLOOP       000087       135  local     relative  code      label
+    CLOSE       00015C       348  local     relative  code      label
+    CURR        000001         1  local     relative  data      label
+    DIGIT10     00004C        76  local     relative  data      label
+    EVNARRAY    0000DD       221  local     relative  data      label
+    EVNSUM      00007E       126  local     relative  data      label
+    GETD        00002B        43  local     relative  code      label
+    GETDLOOP    00002E        46  local     relative  code      label
+    HERE        000168       360  local     relative  code      label
+    INPUT       000000         0  local     relative  data      label
+    ISEVN       000072       114  local     relative  code      label
+    ISODD       000063        99  local     relative  code      label
+    LOOP        0000E9       233  local     relative  code      label
+    MAIN        0000E3       227  local     relative  code      label
+    NEXT1       00009C       156  local     relative  code      label
+    NEXT2       000120       288  local     relative  code      label
+    NEXT3       000141       321  local     relative  code      label
+    NEXT4       000162       354  local     relative  code      label
+    NU          000004         4  local     relative  data      label
+    ODDARRAY    0000DA       218  local     relative  data      label
+    ODDORDEVN   000081       129  local     relative  code      label
+    ODDSUM      00006F       111  local     relative  data      label
+    OPENDOOR    00011A       282  local     relative  code      label
+    OUTD        000062        98  local     relative  data      label
+    OUTPUT      000061        97  local     relative  data      label
+    READCHAR    00001C        28  local     relative  code      label
+    READLOOP    00001F        31  local     relative  code      label
+    RETGD       000049        73  local     relative  data      label
+    SUMARRAY    0000AC       172  local     relative  code      label
+    SUMLOOP     0000B2       178  local     relative  code      label
+    TMP         0000E0       224  local     relative  data      label
+    TOEVN       000099       153  local     relative  code      label
+    WDBYTE      00004F        79  local     relative  code      label
+Literals
+    label   definition
+Relocations
+    address length flag symbol
